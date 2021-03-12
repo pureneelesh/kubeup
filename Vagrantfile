@@ -4,8 +4,8 @@ require 'socket'
 
 ### CONFIGURATION ###
 
-CLUSTER = "1" # Cluster value must be from 1-9 only because it is used in IP_PREFIX
-NAME_PREFIX = "lpabon-k8s-"
+CLUSTER = "2" # Cluster value must be from 1-9 only because it is used in IP_PREFIX
+NAME_PREFIX = "nthakur-k8s-"
 
 # Prefix for IP address: In essense: IP_PREFIX+id => "192.168.10.19
 IP_PREFIX = "192.168.10." + CLUSTER
@@ -20,7 +20,8 @@ NESTED = false
 PREFIX = NAME_PREFIX + CLUSTER
 
 # needed for kubeadm to add to cert
-HOSTIP = Socket.ip_address_list.reject( &:ipv4_loopback? ).reject( &:ipv6_loopback? ).reject( &:ipv6? ).map{|ip| ip.ip_address}.join(",")
+#HOSTIP = Socket.ip_address_list.reject( &:ipv4_loopback? ).reject( &:ipv6_loopback? ).reject( &:ipv6? ).map{|ip| ip.ip_address}.join(",")
+HOSTIP = "10.16.68.23"
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
