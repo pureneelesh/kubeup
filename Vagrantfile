@@ -8,7 +8,7 @@ CLUSTER = "2" # Cluster value must be from 1-9 only because it is used in IP_PRE
 NAME_PREFIX = "nthakur-k8s-"
 
 # Prefix for IP address: In essense: IP_PREFIX+id => "192.168.10.19
-IP_PREFIX = "192.168.10." + CLUSTER
+IP_PREFIX = "192.168.30." + CLUSTER
 
 ### Infrastructure ###
 NODES = 3
