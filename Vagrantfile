@@ -20,7 +20,7 @@ NESTED = false
 PREFIX = NAME_PREFIX + CLUSTER
 
 # needed for kubeadm to add to cert
-HOSTIP = 10.16.68.21
+HOSTIP = "10.16.68.21"
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
