@@ -21,7 +21,7 @@ PREFIX = NAME_PREFIX + CLUSTER
 
 # needed for kubeadm to add to cert
 #HOSTIP = Socket.ip_address_list.reject( &:ipv4_loopback? ).reject( &:ipv6_loopback? ).reject( &:ipv6? ).map{|ip| ip.ip_address}.join(",")
-HOSTIP = "10.16.68.23"
+HOSTIP = "10.16.68.21"
 
 Vagrant.configure("2") do |config|
     config.ssh.insert_key = false
