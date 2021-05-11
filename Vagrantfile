@@ -12,6 +12,7 @@ IP_PREFIX = "192.168.30." + CLUSTER
 
 ### Infrastructure ###
 NODES = 3
+STORAGE_NODES=3
 DISKS = 3
 MEMORY = 8196
 CPUS = 2
@@ -54,13 +55,21 @@ Vagrant.configure("2") do |config|
 				override.vm.synced_folder '.', '/home/vagrant/sync', disabled: true
 			end
 
+            node.vm.provider :libvirt do  |lv|
+                lv.memory = MEMORY
+                lv.cpus = CPUS
+                lv.nested = NESTED
+            end
+
+            # only STORAGE_NODES number of storage nodes; rest are compute-only
+            if i > (STORAGE_NODES-1)
+                DISKS = 0
+            end
+
             (0..DISKS-1).each do |d|
                 node.vm.provider :libvirt do  |lv|
                     driverletters = ('b'..'z').to_a
                     lv.storage :file, :device => "vd#{driverletters[d]}", :path => "#{PREFIX}-disk-#{i}-#{d}.disk", :size => '1024G'
-                    lv.memory = MEMORY
-                    lv.cpus = CPUS
-                    lv.nested = NESTED
                 end
             end
 
